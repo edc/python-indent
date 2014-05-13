@@ -110,6 +110,11 @@ function! GetPythonIndent(lnum)
     call cursor(a:lnum, 1)
     let parlnum = s:SearchParensPair()
     if parlnum > 0
+        " make sure it's not ending with an open parenthesis
+        let thisline = getline(parlnum)
+        if thisline =~ '.*($'
+            return indent(parlnum) + &sw
+        endif
         return col('.')
     endif
     
