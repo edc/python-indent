@@ -112,7 +112,7 @@ function! GetPythonIndent(lnum)
     if parlnum > 0
         " make sure it's not ending with an open parenthesis
         let thisline = getline(parlnum)
-        if thisline =~ '.*($'
+        if thisline =~ '.*[({[]$'
             return indent(parlnum) + &sw
         endif
         return col('.')
